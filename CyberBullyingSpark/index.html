@@ -13,8 +13,6 @@ function showCode(type) {
 const box = document.getElementById("codeDisplay");
     if (type === "spacy") {
         box.innerHTML = `
-        <h3>spaCy</h3>
-        <p>Preprocessing</p>
         <pre>
 import spacy
 from pyspark.sql.functions import udf
@@ -41,8 +39,6 @@ train['lemmatized'] = train['text'].apply(preprocess)
 
     else if (type === "spark") {
         box.innerHTML = `
-        <h3>Spark</h3>
-        <p>Distributed Processing</p>
         <pre>
 from pyspark.sql import SparkSession
 
@@ -56,8 +52,6 @@ test_spark = spark.read.csv("test_clean.csv", header=True, inferSchema=True)
 
     else if (type === "pipeline") {
         box.innerHTML = `
-        <h3>Pipeline</h3>
-        <p>Feature Engineering</p>
         <pre>
 from pyspark.ml import Pipeline
 from pyspark.ml.feature import Tokenizer, NGram, HashingTF, IDF
@@ -79,8 +73,6 @@ train_spark = model.transform(train_spark)
 
     else if (type === "model") {
         box.innerHTML = `
-        <h3>Model</h3>
-        <p>Logistic Regression</p>
         <pre>
 from pyspark.ml.classification import LogisticRegression
 
@@ -312,7 +304,6 @@ pre {
 <div id="codeDisplay" class="code-display">
     Click a step to view code
     </div>
-    <span onclick="closeCode()">✖</span>
     <pre id="codeContent"></pre>
 </div>
 </div>
