@@ -89,10 +89,22 @@ footer {
 </div>
 
 <div class="card">
-    <h2>⚙️ Architecture</h2>
-    <p>
-        spaCy → Apache Spark → ML Pipeline → Logistic Regression
-    </p>
+    <h2>⚙️ System Architecture</h2>
+
+    <div class="pipeline">
+
+        <div class="step">spaCy<br><span>Preprocessing</span></div>
+        <div class="arrow">→</div>
+
+        <div class="step">Spark<br><span>Distributed Processing</span></div>
+        <div class="arrow">→</div>
+
+        <div class="step">Pipeline<br><span>TF-IDF + N-grams</span></div>
+        <div class="arrow">→</div>
+
+        <div class="step">Model<br><span>Logistic Regression</span></div>
+
+    </div>
 </div>
 
 <div class="card">
