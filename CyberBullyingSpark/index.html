@@ -94,14 +94,23 @@ function closeCode() {
 </script>
 
 <style>
+:root {
+    --bg-main: #e9d7c0;
+    --card-bg: #92ada4;
+    --primary: #daa38f;
+    --secondary: #bfa58c;
+    --accent: #ade0e0;
+    --text-main: #041621;
+}
 
+    
 .code-box {
     display: none;
     position: fixed;
     top: 20%;
     left: 20%;
     width: 60%;
-    background: #020617;
+    background: var(--accent);
     padding: 20px;
     border-radius: 12px;
     z-index: 1000;
@@ -110,14 +119,14 @@ function closeCode() {
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: #0f172a;
-    color: white;
+    background: var(--bg-main);
+    color: var(--text-main);
 }
 
 header {
     padding: 60px;
     text-align: center;
-    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 header h1 {
@@ -130,7 +139,7 @@ section {
 }
 
 .card {
-    background: #1e293b;
+    background: var(--card-bg);
     padding: 25px;
     border-radius: 15px;
     margin-bottom: 25px;
@@ -138,7 +147,7 @@ section {
 }
 
 h2 {
-    color: #38bdf8;
+    color: var(--accent;
 }
 
 ul {
@@ -149,8 +158,8 @@ ul {
     display: inline-block;
     padding: 12px 20px;
     margin-top: 10px;
-    background: #3b82f6;
-    color: white;
+    background:  var(--primary);
+    color:  var(--text-main;
     text-decoration: none;
     border-radius: 8px;
     transition: 0.3s;
@@ -158,7 +167,8 @@ ul {
 
 .code-display {
     margin-top: 20px;
-    background: #020617;
+    background: #ffffff;
+    color: #041621;
     padding: 15px;
     border-radius: 10px;
     font-family: monospace;
@@ -166,7 +176,7 @@ ul {
 }
 
 .button:hover {
-    background: #2563eb;
+    background:  var(--secondary);
 }
 
 footer {
@@ -186,7 +196,7 @@ footer {
 }
 
 .step {
-    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     padding: 20px;
     border-radius: 12px;
     text-align: center;
@@ -224,7 +234,7 @@ pre {
     transform: scale(1.1);
 }
 
-    .architecture-container {
+.architecture-container {
     display: flex;
     gap: 40px;
     align-items: center;
@@ -250,8 +260,8 @@ pre {
 
 .arrow {
     font-size: 28px;
-    color: #38bdf8;
-}
+    color: var(--accent);}
+    
 </style>
 </head>
 
