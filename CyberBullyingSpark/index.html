@@ -10,8 +10,7 @@
 <script>
 
 function showCode(type) {
-     const box = document.querySelector(".focus-box");
-
+const box = document.getElementById("codeDisplay");
     if (type === "spacy") {
         box.innerHTML = `
         <h3>spaCy</h3>
@@ -313,7 +312,6 @@ pre {
 <div id="codeDisplay" class="code-display">
     Click a step to view code
     </div>
-    <div id="codeBox" class="code-box">
     <span onclick="closeCode()">✖</span>
     <pre id="codeContent"></pre>
 </div>
