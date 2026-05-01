@@ -19,9 +19,26 @@ function showCode(type) {
         <h3>spaCy</h3>
         <p>Preprocessing</p>
         <pre>
+import spacy
+from pyspark.sql.functions import udf
+from pyspark.sql.types import ArrayType, StringType
+
 nlp = spacy.load("en_core_web_sm")
-doc = nlp(text)
-lemmatized = " ".join([t.lemma_ for t in doc])
+
+def lemmatize_spacy(words):
+    doc = nlp(" ".join(words))
+    return [token.lemma_ for token in doc]
+def preprocess(text):
+    doc = nlp(text)
+    return " ".join([
+        token.lemma_
+        for token in doc
+        if not token.is_stop and token.is_alpha
+    ])
+lemma_udf = udf(lemmatize_spacy, ArrayType(StringType()))
+
+train['lemmatized'] = train['text'].apply(preprocess)
+
         </pre>`;
     }
 
@@ -30,7 +47,13 @@ lemmatized = " ".join([t.lemma_ for t in doc])
         <h3>Spark</h3>
         <p>Distributed Processing</p>
         <pre>
-spark.read.csv("ghc_train.tsv", sep="\\t")
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("Cyberbullying").getOrCreate()
+
+train_spark = spark.read.csv("train_clean.csv", header=True, inferSchema=True)
+test_spark = spark.read.csv("test_clean.csv", header=True, inferSchema=True)
+
         </pre>`;
     }
 
@@ -39,7 +62,21 @@ spark.read.csv("ghc_train.tsv", sep="\\t")
         <h3>Pipeline</h3>
         <p>Feature Engineering</p>
         <pre>
-Tokenizer → NGram → HashingTF → IDF
+from pyspark.ml import Pipeline
+from pyspark.ml.feature import Tokenizer, NGram, HashingTF, IDF
+
+tokenizer = Tokenizer(inputCol="lemmatized", outputCol="words")
+ngram = NGram(n=2, inputCol="words", outputCol="bigrams")
+hashingTF = HashingTF(inputCol="bigrams", outputCol="rawFeatures")
+idf = IDF(inputCol="rawFeatures", outputCol="features")
+
+pipeline = Pipeline(stages=[tokenizer, ngram, hashingTF, idf])
+model = pipeline.fit(train_spark)
+
+
+train_spark = model.transform(train_spark)
+
+        
         </pre>`;
     }
 
@@ -48,7 +85,16 @@ Tokenizer → NGram → HashingTF → IDF
         <h3>Model</h3>
         <p>Logistic Regression</p>
         <pre>
-lr.fit(train_spark)
+from pyspark.ml.classification import LogisticRegression
+
+lr_hd = LogisticRegression(featuresCol="features", labelCol="hd")
+model_hd = lr_hd.fit(train_spark)
+
+lr_vo = LogisticRegression(featuresCol="features", labelCol="vo")
+model_vo = lr_vo.fit(train_spark)
+
+lr_cv = LogisticRegression(featuresCol="features", labelCol="cv")
+model_cv = lr_cv.fit(train_spark)
         </pre>`;
     }
 }
