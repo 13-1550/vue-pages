@@ -266,23 +266,23 @@ pre {
 
 .results {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .result-box {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 20px;
-    width: 180px;
+    background: #fefaf0;
+    border-radius: 18px;
+    padding: 25px;
+    width: 220px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     transition: 0.3s;
 }
 
 .result-box:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
 }
 
 .result-box h3 {
@@ -300,21 +300,22 @@ pre {
 .accuracy {
     font-size: 28px;
     font-weight: bold;
-    color: #a13a1e; /* your accent color */
+    color: #a13a1e; 
+    margin: 15px 0;
 }
 
 .bar {
     height: 6px;
     background: #eee;
     border-radius: 10px;
-    margin-top: 12px;
+    margin-top: 10px;
     overflow: hidden;
     
 }
 
 .fill {
     height: 100%;
-    background: #a13a1e;
+    background: linear-gradient(90deg, #86a9b0, #b0d2d9);
     border-radius: 10px;
     transition: width 0.6s ease;
 }
@@ -386,7 +387,7 @@ pre {
 
 <div class="card">        
     
-   <h2>📊 Results</h2>
+   <h2>Results</h2>
 
     <div class="results">
 
@@ -394,20 +395,19 @@ pre {
             <h3>Hate Speech</h3>
             <p class="label">(HD)</p>
             <p class="accuracy">99.95%</p>
-        </div>
         <div class="bar">
     <div class="fill" style="width: 99.95%;"></div>
 </div>
-
+</div>
+        
         <div class="result-box">
             <h3>Violence</h3>
             <p class="label">(VO)</p>
             <p class="accuracy">99.94%</p>
-        </div>
         <div class="bar">
     <div class="fill" style="width: 99.94%;"></div>
 </div>
-
+</div>
         <div class="result-box">
             <h3>Call to Violence</h3>
             <p class="label">(CV)</p>
