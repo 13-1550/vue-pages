@@ -8,7 +8,38 @@ PE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cyberbullying Detection</title>
 
+
+<script>
+function showCode(type) {
+    const box = document.getElementById("codeBox");
+    const content = document.getElementById("codeContent");
+
+    if (type === "spacy") {
+        content.textContent = `nlp = spacy.load("en_core_web_sm")\ndoc = nlp(text)`;
+    }
+
+    box.style.display = "block";
+}
+
+function closeCode() {
+    document.getElementById("codeBox").style.display = "none";
+}
+</script>
+
 <style>
+
+.code-box {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    background: #020617;
+    padding: 20px;
+    border-radius: 12px;
+    z-index: 1000;
+}
+    
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -158,6 +189,9 @@ pre {
             </details>
         </div>
 
+        <div class="step" onclick="showCode('spacy')">
+        spaCy<br><span>Preprocessing</span>
+        </div>
         <div class="step">Spark<br><span>Distributed Processing</span></div>
         <div class="arrow">→</div>
 
@@ -167,6 +201,10 @@ pre {
         <div class="step">Model<br><span>Logistic Regression</span></div>
 
     </div>
+    <div id="codeBox" class="code-box">
+    <span onclick="closeCode()">✖</span>
+    <pre id="codeContent"></pre>
+</div>
 </div>
 
 <div class="card">
