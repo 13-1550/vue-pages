@@ -10,15 +10,27 @@ PE html>
 
 
 <script>
+
 function showCode(type) {
-    const box = document.getElementById("codeBox");
-    const content = document.getElementById("codeContent");
+    const code = document.getElementById("codeDisplay");
 
     if (type === "spacy") {
-        content.textContent = `nlp = spacy.load("en_core_web_sm")\ndoc = nlp(text)`;
+        code.textContent = `nlp = spacy.load("en_core_web_sm")
+doc = nlp(text)
+lemmatized = " ".join([t.lemma_ for t in doc])`;
     }
 
-    box.style.display = "block";
+    else if (type === "spark") {
+        code.textContent = `spark.read.csv("ghc_train.tsv", sep="\\t")`;
+    }
+
+    else if (type === "pipeline") {
+        code.textContent = `Tokenizer → NGram → HashingTF → IDF`;
+    }
+
+    else if (type === "model") {
+        code.textContent = `LogisticRegression.fit(train_spark)`;
+    }
 }
 
 function closeCode() {
@@ -87,6 +99,15 @@ ul {
     text-decoration: none;
     border-radius: 8px;
     transition: 0.3s;
+}
+
+.code-display {
+    margin-top: 20px;
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
 }
 
 .button:hover {
@@ -177,29 +198,32 @@ pre {
 
     <div class="pipeline">
 
-        <div class="step">
-            <details>
-        <summary>spaCy<br><span>Preprocessing</span></summary>
-
-                <pre>
-        nlp = spacy.load("en_core_web_sm")
-        doc = nlp(text)
-        lemmatized = " ".join([token.lemma_ for token in doc])
-                </pre>
-            </details>
-        </div>
-
         <div class="step" onclick="showCode('spacy')">
         spaCy<br><span>Preprocessing</span>
-        </div>
-        <div class="step">Spark<br><span>Distributed Processing</span></div>
-        <div class="arrow">→</div>
+    </div>
 
-        <div class="step">Pipeline<br><span>TF-IDF + N-grams</span></div>
-        <div class="arrow">→</div>
+    <div class="arrow">→</div>
 
-        <div class="step">Model<br><span>Logistic Regression</span></div>
+    <div class="step" onclick="showCode('spark')">
+        Spark<br><span>Distributed Processing</span>
+    </div>
 
+    <div class="arrow">→</div>
+
+    <div class="step" onclick="showCode('pipeline')">
+        Pipeline<br><span>TF-IDF + N-grams</span>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <div class="step" onclick="showCode('model')">
+        Model<br><span>Logistic Regression</span>
+    </div>
+
+</div>
+
+<div id="codeDisplay" class="code-display">
+    Click a step to view code
     </div>
     <div id="codeBox" class="code-box">
     <span onclick="closeCode()">✖</span>
