@@ -89,6 +89,22 @@ footer {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+details {
+    cursor: pointer;
+}
+
+summary {
+    font-weight: bold;
+}
+
+pre {
+    margin-top: 10px;
+    background: #020617;
+    padding: 10px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
 .step span {
     display: block;
     font-size: 12px;
@@ -130,8 +146,17 @@ footer {
 
     <div class="pipeline">
 
-        <div class="step">spaCy<br><span>Preprocessing</span></div>
-        <div class="arrow">→</div>
+        <div class="step">
+            <details>
+        <summary>spaCy<br><span>Preprocessing</span></summary>
+
+                <pre>
+        nlp = spacy.load("en_core_web_sm")
+        doc = nlp(text)
+        lemmatized = " ".join([token.lemma_ for token in doc])
+                </pre>
+            </details>
+        </div>
 
         <div class="step">Spark<br><span>Distributed Processing</span></div>
         <div class="arrow">→</div>
