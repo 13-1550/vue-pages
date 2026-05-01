@@ -12,24 +12,44 @@ PE html>
 <script>
 
 function showCode(type) {
-    const code = document.getElementById("codeDisplay");
+     const box = document.querySelector(".focus-box");
 
     if (type === "spacy") {
-        code.textContent = `nlp = spacy.load("en_core_web_sm")
+        box.innerHTML = `
+        <h3>spaCy</h3>
+        <p>Preprocessing</p>
+        <pre>
+nlp = spacy.load("en_core_web_sm")
 doc = nlp(text)
-lemmatized = " ".join([t.lemma_ for t in doc])`;
+lemmatized = " ".join([t.lemma_ for t in doc])
+        </pre>`;
     }
 
     else if (type === "spark") {
-        code.textContent = `spark.read.csv("ghc_train.tsv", sep="\\t")`;
+        box.innerHTML = `
+        <h3>Spark</h3>
+        <p>Distributed Processing</p>
+        <pre>
+spark.read.csv("ghc_train.tsv", sep="\\t")
+        </pre>`;
     }
 
     else if (type === "pipeline") {
-        code.textContent = `Tokenizer → NGram → HashingTF → IDF`;
+        box.innerHTML = `
+        <h3>Pipeline</h3>
+        <p>Feature Engineering</p>
+        <pre>
+Tokenizer → NGram → HashingTF → IDF
+        </pre>`;
     }
 
     else if (type === "model") {
-        code.textContent = `LogisticRegression.fit(train_spark)`;
+        box.innerHTML = `
+        <h3>Model</h3>
+        <p>Logistic Regression</p>
+        <pre>
+lr.fit(train_spark)
+        </pre>`;
     }
 }
 
@@ -167,6 +187,30 @@ pre {
 
 .step:hover {
     transform: scale(1.1);
+}
+
+    .architecture-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.focus-box {
+    background: linear-gradient(135deg, #3b82f6, #9333ea);
+    padding: 25px;
+    border-radius: 15px;
+    width: 350px;
+}
+
+.focus-box pre {
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.step.active {
+    border: 2px solid #38bdf8;
 }
 
 .arrow {
