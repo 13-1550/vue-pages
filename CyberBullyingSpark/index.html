@@ -9,6 +9,19 @@
 
 
 <script>
+
+function selectMetric(button, metric) {
+    // remove active from all
+    const buttons = document.querySelectorAll(".metric-buttons button");
+    buttons.forEach(btn => btn.classList.remove("active"));
+
+    // add active to clicked one
+    button.classList.add("active");
+
+    // your existing logic
+    showMetric(metric);
+}
+    
 function showMetric(metric) {
     const bars = document.querySelectorAll(".fill");
 
@@ -287,7 +300,21 @@ pre {
     color: var(--accent);
 }
 
-
+.metric-buttons button {
+    margin: 5px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #eee;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.metric-buttons button.active {
+    background: #6cc2c2;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+    
 .results {
     display: flex;
     gap: 25px;
@@ -591,7 +618,6 @@ ul li::before {
         <div class="result-box">
             <h3>Call to Violence</h3>
             <p class="label">(CV)</p>
-            <p class="accuracy">99.99%</p>
            <div class="bar-group">
 
 
@@ -640,10 +666,10 @@ ul li::before {
 
         </div>
     <div class="metric-buttons">
-  <button onclick="showMetric('f1')">F1</button>
-  <button onclick="showMetric('accuracy')">Accuracy</button>
-  <button onclick="showMetric('precision')">Precision</button>
-  <button onclick="showMetric('recall')">Recall</button>
+  <button onclick="selectMetric(this, 'f1')" class="active">F1</button>
+  <button onclick="selectMetric(this, 'accuracy')">Accuracy</button>
+  <button onclick="selectMetric(this, 'precision')">Precision</button>
+  <button onclick="selectMetric(this, 'recall')">Recall</button>
 </div>
     </div>
 </div>
