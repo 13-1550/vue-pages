@@ -450,13 +450,24 @@ pre {
     <div class="results">
 
         <div class="result-box">
-            <h3>Hate Speech</h3>
-            <p class="label">(HD)</p>
-            <p class="accuracy">99.95%</p>
-        <div class="bar">
-    <div class="fill" style="width: 99.95%;"></div>
-</div>
-</div>
+          <h2> Hate Speech (HD)</h2>
+
+  <div class="bar-group">
+    <p>Logistic Regression (F1: 0.82)</p>
+    <div class="bar"><div class="fill" style="width:82%"></div></div>
+  </div>
+
+  <div class="bar-group">
+    <p>Random Forest (F1: 0.85)</p>
+    <div class="bar"><div class="fill" style="width:85%"></div></div>
+  </div>
+
+  <div class="bar-group">
+    <p>Decision Tree (F1: 0.78)</p>
+    <div class="bar"><div class="fill" style="width:78%"></div></div>
+  </div>
+        </div>
+    
         
         <div class="result-box">
             <h3>Violence</h3>
