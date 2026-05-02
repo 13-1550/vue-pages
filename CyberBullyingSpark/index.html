@@ -325,10 +325,27 @@ pre {
     color: inherit;
     width: 100;
 }
+.tech-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-box p {
+    margin-top: 10px;
+}
 
 .tech-box:hover img {
     transform: scale(1.1);
     transition: 0.3s;
+}
+
+.tech-box img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    max-width: 100px;
 }
     
 </style>
@@ -392,28 +409,28 @@ pre {
 
         <div class="tech-box">
             <a href="https://spacy.io" target="_blank" rel="noopener noreferrer">
-        <img src="images/spaCy.png" alt="spaCy" width="300">
+        <img src="images/spaCy.png" alt="spaCy">
                 <p>spaCy</p>
             </a>
         </div>
 
         <div class="tech-box">
             <a href="https://spark.apache.org/" target="_blank" rel="noopener noreferrer">
-        <img src="images/spark.svg" alt="spark" width="300">
+        <img src="images/spark.svg" alt="spark">
             <p>Spark</p>
             </a>
         </div>
 
         <div class="tech-box">
            <a href="https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/" target="_blank" rel="noopener noreferrer"> 
-               <img src="images/TFIDF.svg" alt="TFIDF" width="300">
+               <img src="images/TFIDF.svg" alt="TFIDF">
             <p>TF-IDF</p>
            </a>
         </div>
 
         <div class="tech-box">
             <a href="https://www.geeksforgeeks.org/machine-learning/understanding-logistic-regression/" target="_blank" rel="noopener noreferrer"> 
-               <img src="images/LR.png" alt="LR" width="300">
+               <img src="images/LR.png" alt="LR">
             <p>Logistic Regression</p>
             </a>
         </div>
