@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,6 +9,22 @@
 
 
 <script>
+function showMetric(metric) {
+    const bars = document.querySelectorAll(".fill");
+
+    bars.forEach(bar => {
+        const value = bar.getAttribute("data-" + metric);
+
+        // update bar
+        bar.style.width = value + "%";
+
+        // update text
+        const text = bar.closest(".bar-group")
+                        .querySelector(".metric-value");
+
+        text.textContent = value + "%";
+    });
+}
 
 function showCode(type) {
 const box = document.getElementById("codeDisplay");
@@ -136,6 +153,13 @@ header h1 {
 
 section {
     padding: 40px 10%;
+}
+.metric-buttons button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .card {
@@ -345,6 +369,24 @@ pre {
     transform: scale(1.1);
     transition: 0.3s;
 }
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+ul li::before {
+  content: "✦";
+  color: #F9F5EB;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
 
 .tech-box img {
     width: 150px;
@@ -450,42 +492,159 @@ pre {
     <div class="results">
 
         <div class="result-box">
-          <h2> Hate Speech (HD)</h2>
 
-  <div class="bar-group">
-    <p>Logistic Regression (F1: 0.82)</p>
-    <div class="bar"><div class="fill" style="width:82%"></div></div>
-  </div>
+        
+            <h3>Hate Speech</h3>
+            <p class="label">(HD)</p>
 
-  <div class="bar-group">
-    <p>Random Forest (F1: 0.85)</p>
-    <div class="bar"><div class="fill" style="width:85%"></div></div>
+        <div class="bar-group">
+  <p>Logistic Regression -  <span class="metric-value"></span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="82.48"
+         data-accuracy="79.83"
+         data-precision="85.73"
+         data-recall="79.83"
+         style="width:85%">
+    </div>
   </div>
+</div>
 
-  <div class="bar-group">
-    <p>Decision Tree (F1: 0.78)</p>
-    <div class="bar"><div class="fill" style="width:78%"></div></div>
+<div class="bar-group">
+  <p>Gradient Boosted Trees -  <span class="metric-value"></span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="87.43"
+         data-accuracy="91.32"
+         data-precision="85.28"
+         data-recall="91.32"
+         style="width:85%">
+    </div>
   </div>
-        </div>
-    
+</div>
+
+
+
+<div class="bar-group">
+  <p>Random Forest -  <span class="metric-value">%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="87.43"
+         data-accuracy="91.48"
+         data-precision="83.71"
+         data-recall="91.48"
+         style="width:85%">
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
         
         <div class="result-box">
-            <h3>Violence</h3>
+            <h3>Vulgar or offensive</h3>
             <p class="label">(VO)</p>
-            <p class="accuracy">99.94%</p>
-        <div class="bar">
-    <div class="fill" style="width: 99.94%;"></div>
+           <div class="bar-group">
+  <p>Logistic Regression -  <span class="metric-value"></span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="86.44"
+         data-accuracy="83.65"
+         data-precision="89.95"
+         data-recall="83.65"
+         style="width:85%">
+    </div>
+  </div>
 </div>
+
+<div class="bar-group">
+  <p>Gradient Boosted Trees -  <span class="metric-value">85%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="98.91"
+         data-accuracy="99.29"
+         data-precision="98.28"
+         data-recall="99.92"
+         style="width:85%">
+    </div>
+  </div>
+</div>
+
+<div class="bar-group">
+  <p>Random Forest -  <span class="metric-value">85%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="90.82"
+         data-accuracy="93.81"
+         data-precision="88.01"
+         data-recall="93.81"
+         style="width:85%">
+    </div>
+  </div>
+</div>
+
+
 </div>
         <div class="result-box">
             <h3>Call to Violence</h3>
             <p class="label">(CV)</p>
             <p class="accuracy">99.99%</p>
-            <div class="bar">
-    <div class="fill" style="width: 99.99%;"></div>
+           <div class="bar-group">
+
+
+  <p>Logistic Regression -  <span class="metric-value">85%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="98.35"
+         data-accuracy="98.12"
+         data-precision="98.57"
+         data-recall="98.12"
+         style="width:85%">
+    </div>
+  </div>
 </div>
+
+<div class="bar-group">
+  <p>Gradient Boosted Trees -  <span class="metric-value">85%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="90.77"
+         data-accuracy="93.72"
+         data-precision="88.01"
+         data-recall="93.72"
+         style="width:85%">
+    </div>
+  </div>
+</div>
+
+<div class="bar-group">
+  <p>Random Forest -  <span class="metric-value">85%</span> </p>
+  <div class="bar">
+    <div class="fill"
+         data-f1="98.93"
+         data-accuracy="99.28"
+         data-precision="98.85"
+         data-recall="98.58"
+         style="width:85%">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
         </div>
-    
+    <div class="metric-buttons">
+  <button onclick="showMetric('f1')">F1</button>
+  <button onclick="showMetric('accuracy')">Accuracy</button>
+  <button onclick="showMetric('precision')">Precision</button>
+  <button onclick="showMetric('recall')">Recall</button>
+</div>
     </div>
 </div>
     
@@ -495,6 +654,21 @@ pre {
         <li>Using Apache Spark distributed learning makes the model more accurate and faster</li>
         <li>Using spaCy wasn't an ideal solution as different methods that support distributed learning exist</li>
         <li>A cyber-bullying system would work more efficiently if its distributed</li>
+    </ul>
+    <h2>Tests and trials</h2>
+    <ul>
+        <li><h3>Testing data</h3>
+            when testing the data the relsut was unrelistically high, which lead to makeing further verfication of the data and it was found that the 
+            testing data did not converet correctly and thus the trained data was compared to itself resulting in innacurate
+            evaluation
+        </li>
+        <li><h3>Spark NLP</h3>
+            When testing Spark NLP, instead of using a combination of spark and spaCy, the 
+            session broke and the server kept getting disconnected from spark. This does not mean that spark nlp isn't
+            a good solution but rather that the computing power was not efficient enough for the job
+
+        </li>
+
     </ul>
 </div>
     
